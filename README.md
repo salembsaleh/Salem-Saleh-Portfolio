@@ -3,7 +3,6 @@
 🔗 **Live:** https://salemsaleh.com
 
 Personal portfolio showcasing my experience, work, and frontend-focused design craft.  
-Built to be minimal, fast, and intentionally designed — not template-driven.
 
 ---
 
