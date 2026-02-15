@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+@theme {
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Sora", sans-serif;
+
+  --color-accent-50: #fdf8ef;
+  --color-accent-100: #f9edd4;
+  --color-accent-200: #f2d8a5;
+  --color-accent-300: #e9bf6d;
+  --color-accent-400: #d4a853;
+  --color-accent-500: #c4922e;
+  --color-accent-600: #a67323;
+  --color-accent-700: #8a5720;
+  --color-accent-800: #724720;
+  --color-accent-900: #5f3b1e;
+
+  --color-surface-0: #ffffff;
+  --color-surface-50: #fafaf9;
+  --color-surface-100: #f2f2f0;
+  --color-surface-200: #e6e5e1;
+  --color-surface-300: #d4d3cd;
+  --color-surface-400: #a8a69e;
+  --color-surface-500: #7c7a72;
+  --color-surface-600: #5a5850;
+  --color-surface-700: #3e3d38;
+  --color-surface-800: #262520;
+  --color-surface-900: #171612;
+  --color-surface-950: #0d0c0a;
+
+  --spacing-section: 8rem;
+  --spacing-section-sm: 5rem;
+}
+
+/* ─── CSS Custom Properties for theme switching ─── */
+:root {
+  --bg-primary: var(--color-surface-0);
+  --bg-secondary: var(--color-surface-50);
+  --bg-card: var(--color-surface-100);
+  --bg-card-hover: var(--color-surface-200);
+  --text-primary: var(--color-surface-900);
+  --text-secondary: var(--color-surface-600);
+  --text-tertiary: var(--color-surface-500);
+  --border-color: var(--color-surface-200);
+  --border-hover: var(--color-surface-300);
+  --accent: var(--color-accent-400);
+  --accent-hover: var(--color-accent-500);
+  --accent-subtle: var(--color-accent-100);
+  --grain-opacity: 0.03;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --gradient-hero: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(212, 168, 83, 0.06) 0%,
+    transparent 70%
+  );
+}
+
+.dark {
+  --bg-primary: var(--color-surface-950);
+  --bg-secondary: var(--color-surface-900);
+  --bg-card: var(--color-surface-800);
+  --bg-card-hover: var(--color-surface-700);
+  --text-primary: var(--color-surface-50);
+  --text-secondary: var(--color-surface-400);
+  --text-tertiary: var(--color-surface-500);
+  --border-color: var(--color-surface-700);
+  --border-hover: var(--color-surface-600);
+  --accent: var(--color-accent-400);
+  --accent-hover: var(--color-accent-300);
+  --accent-subtle: rgba(212, 168, 83, 0.1);
+  --grain-opacity: 0.04;
+  --nav-bg: rgba(13, 12, 10, 0.8);
+  --gradient-hero: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(212, 168, 83, 0.04) 0%,
+    transparent 70%
+  );
+}
+
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Grain Texture Overlay ─── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ─── Hero Gradient ─── */
+.hero-gradient {
+  background: var(--gradient-hero);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ─── Focus States ─── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ─── Typography Scale ─── */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ─── Link underline animation ─── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent);
+  transition: width 0.3s cubic-bezier(0.25, 0.1, 0, 1);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Timeline ─── */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border-color);
+}
+
+.timeline-line-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  background: var(--accent);
+  transition: height 0.6s cubic-bezier(0.25, 0.1, 0, 1);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.timeline-dot.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-subtle);
+}
+
+/* ─── Card shimmer effect ─── */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(212, 168, 83, 0.06),
+    transparent 40%
+  );
+}
+
+.card-shimmer:hover::before {
+  opacity: 1;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
