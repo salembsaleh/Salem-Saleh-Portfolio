@@ -75,7 +75,7 @@ export default function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+      <a href={href} target={href.startsWith("http") || href.endsWith(".pdf") ? "_blank" : undefined} rel="noopener noreferrer">
         {inner}
       </a>
     );

@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "I build products used by billions.",
   description:
     "CS @ Texas A&M · Incoming SWE Intern @ Netflix · Previously @ Meta (2x), Figma.",
-  resume: "https://salem-saleh-resume.tiiny.site/",
+  resume: "/Salem_Saleh_Resume.pdf",
   phone: "346-541-8475",
   location: "College Station, TX",
   email: "salembsaleh@gmail.com",
