@@ -13,8 +13,7 @@ I’m a Computer Science student at **Texas A&M University** with experience bui
 This site highlights:
 - Professional experience (Netflix, Meta, Figma, Chevron)
 - Current work as **CTO / Co-Founder at ThirdPerson**
-- Selected frontend-focused projects
-- A clean, opinionated visual system with subtle motion
+- Projects
 
 ---
 
